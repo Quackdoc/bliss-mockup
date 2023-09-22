@@ -1,0 +1,34 @@
+import { GroupBox, HorizontalBox, VerticalBox } from "std-widgets.slint";
+import { SideBar } from "ui/side_bar.slint";
+import { Diskinfo } from "ui/partition.slint";
+
+export component App inherits Window {
+    title: "Bliss OS";
+    preferred-width: 600px;
+    preferred-height: 400px;
+
+    VerticalBox {
+        min-width: 5000px;
+        //alignment: center;
+        //Text {
+        //    font-size: 20px;
+        //    text: "Bliss Partitioner";
+        //    horizontal-alignment: center;
+        //    vertical-alignment: top;
+        //}
+
+        HorizontalLayout {
+            alignment: center;
+            side-bar := SideBar {
+                title: @tr("Drives");
+                model: [@tr("Menu" => "Drive1"), @tr("Menu" => "Driev2"), @tr("Menu" => "Drive3"), @tr("Menu" => "Drive4"), @tr("Menu" => "Drive5")];
+            }
+            
+            if(side-bar.current-item == 0) : Diskinfo {}
+            if(side-bar.current-item == 1) : Diskinfo {}
+            if(side-bar.current-item == 2) : Diskinfo {}
+            if(side-bar.current-item == 3) : Diskinfo {}
+            if(side-bar.current-item == 4) : Diskinfo {}
+        }
+    }
+}

@@ -1,0 +1,88 @@
+import { StandardButton, Button, GridBox,
+    LineEdit, SpinBox, VerticalBox,
+    ComboBox, GroupBox, CheckBox,
+    TabWidget, HorizontalBox, 
+    StandardTableView } from "std-widgets.slint";
+
+
+
+export component Diskinfo inherits Rectangle { 
+
+    VerticalLayout {
+        Text {
+            vertical-alignment: center;
+            horizontal-alignment: center;
+            font-size: 20px;
+            text: "Details";
+        }
+        HorizontalBox { 
+            Rectangle {
+                Text { text: "Disk"; }
+            }
+            Rectangle {
+                Text { text: "Parition"; }
+            }
+            Rectangle {
+                Text { text: "Layout"; }
+            }
+            Rectangle {
+                Text { text: "eventually"; }
+            }
+        }
+        GridBox {
+            Row {
+                Text { text: "Model:"; }
+                Text { text: "Some Random Hitachi Drive"; }
+                //folder-le := LineEdit { }
+            }
+            Row {
+                Text { text: "Size"; }
+                Text { text: "1TiB"; }
+            }
+            Row {
+                Text { text: "Paritioning:"; }
+                Text { text: "GUID partition table"; }
+            }
+            Row {
+                Text { text: "Serial:"; }
+                Text { text: "SOMELONGNUMBER"; }
+            }
+        }
+        StandardTableView {
+            min-width: 800px;
+            max-width: 1000px;
+            columns: [
+                { title: "Block Device" },
+                { title: "Partition Name" },
+                { title: "File System" },
+                { title: "Device Size" },
+            ];
+            rows: [
+                [
+                    { text: "/Dev/sda1" }, { text: "Efi" }, { text: "Fat32" }, { text: "500MiB" },
+                ],
+                [
+                    { text: "/Dev/sda2" }, { text: "System" }, { text: "EXT4" }, { text: "4Gib" },
+                ],
+                [
+                    { text: "/Dev/sda3" }, { text: "Data" }, { text: "EXT4" }, { text: "16GiB" },
+                ]
+            ];
+        }
+        HorizontalBox {
+            Button {
+                text: "New Partiton";
+                clicked => { self.text = "Open Partition Creator"; }
+            }
+            Rectangle {}
+            Button {
+                text: "Quit";
+                clicked => { self.text = "Exited"; }
+            }
+            Button {
+                text: "Write Partition Table";
+                clicked => { self.text = "Writing Partition"; }
+            }
+        }
+    }
+}
