@@ -4,9 +4,8 @@ import { StandardButton, Button, GridBox,
     TabWidget, HorizontalBox, 
     StandardTableView } from "std-widgets.slint";
 
-
-
 export component Diskinfo inherits Rectangle { 
+    callback write-disk(string);
 
     VerticalLayout {
         Text {
@@ -17,16 +16,16 @@ export component Diskinfo inherits Rectangle {
         }
         HorizontalBox { 
             Rectangle {
+                VerticalBox {
                 Text { text: "Disk"; }
-            }
-            Rectangle {
-                Text { text: "Parition"; }
-            }
-            Rectangle {
                 Text { text: "Layout"; }
+                }
             }
             Rectangle {
+                VerticalBox {
+                Text { text: "Parition"; }
                 Text { text: "eventually"; }
+                }
             }
         }
         GridBox {
@@ -72,7 +71,14 @@ export component Diskinfo inherits Rectangle {
         HorizontalBox {
             Button {
                 text: "New Partiton";
-                clicked => { self.text = "Open Partition Creator"; }
+                clicked => { 
+                    root.write-disk("Test");
+                    //self.text = "Open Partition Creator"; 
+                }
+            }
+            Button {
+                text: "Remove Partiton";
+                clicked => { self.text = "Delete partition"; }
             }
             Rectangle {}
             Button {
